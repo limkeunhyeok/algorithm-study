@@ -1,24 +1,28 @@
-# 3번문제
-arr = [1,2,3,17,10] # 3
-arr1 = [1,2,3,17,10,10000] # 4
-arr2 = [1,2,3,17,10,10000,10,10] # 4
-arr3 = [1,2,3,4,5,6,6,6,7,17] # 3
+# 4번 문제
+n = 4
+arr = [1,3,7,13]
 
-def solution(arr):
-    # 초기 설정
-    section = []
-    count = 1
-    arr.sort()
-    section.append(arr[0])
-    section.append(arr[0] + 4)
-    
-    for i in range(len(arr)):
-        # 구간 안에 있으면 continue
-        if arr[i] >= section[0] and arr[i] <= section[1]:
-            continue
-        # 구간을 벗어나면 count + 1, 구간 업데이트
-        else:
-            count += 1
-            section[0] = arr[i]
-            section[1] = arr[i] + 4
-    return count
+def solution(n, array):
+    array.sort()
+    sub_array = []
+    for i in range(n - 1):
+        sub_array.append(array[i + 1] - array[i])
+    point = arrEuclidean(sub_array)
+    return (array[n-1] - array[0]) / point + 1 - n 
+
+# 유클리드 호제법
+# a와 b의 최대공약수는 b와 a 를 b로 나눈 나머지와의 최대공약수와 같다
+def euclidean(a, b):
+    if a == None:
+        return b
+    elif a < b:
+        (a, b) = (b, a)
+    while b != 0:
+        (a, b) = (b, a % b)
+    return a
+
+def arrEuclidean(arr):
+    num = None
+    for i in arr:
+        num = euclidean(num, i)
+    return num
