@@ -1,5 +1,5 @@
 import unittest
-import boggle, prob1, prob2
+import boggle, tsp, prob1, prob2, prob3
 
 class Chap6ProbTest(unittest.TestCase):
     # boggle tests
@@ -22,6 +22,21 @@ class Chap6ProbTest(unittest.TestCase):
         result = boggle.solution(0, 0, 'upr')
         self.assertEqual(result, True)
 
+    # TSP tests
+    def test_tsp_case_1(self):
+        result = tsp.solution(3, [
+            [0, 1, 4], 
+            [1, 0, 3], 
+            [4, 3, 0]
+            ])
+        self.assertEqual(result, 8)
+    def test_tsp_case_2(self):
+        result = tsp.solution(2, [
+            [0, 1], 
+            [1, 0] 
+            ])
+        self.assertEqual(result, 2)
+
     # Prob1 tests
     def test_prob1_case_1(self):
         result = prob1.solution(2, 1, [(0, 1)])
@@ -36,7 +51,7 @@ class Chap6ProbTest(unittest.TestCase):
         result = prob1.solution(4, 1, [(0, 1)])
         self.assertEqual(result, 0)
 
-    # Prob1 tests
+    # Prob2 tests
     def test_prob2_case_1(self):
         result = prob2.solution(3, 7, [
             ['#', '.', '.', '.', '.', '.', '#'],
@@ -57,6 +72,7 @@ class Chap6ProbTest(unittest.TestCase):
             ['#', '.', '.']
             ])
         self.assertEqual(result, 1)
+    '''
     def test_prob2_case_4(self):
         result = prob2.solution(8, 10, [
             ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#'],
@@ -69,6 +85,15 @@ class Chap6ProbTest(unittest.TestCase):
             ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#']
             ])
         self.assertEqual(result, 1514)
+    '''
+
+    # Prob3 tests
+    def test_prob3_case_1(self):
+        result = prob3.solution([12, 6, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12])
+        self.assertEqual(result, 2)
+    def test_prob3_case_2(self):
+        result = prob3.solution([12, 9, 3, 12, 6, 6, 9, 3, 12, 9, 12, 9, 12, 12, 6, 6])
+        self.assertEqual(result, 9)
 
 if __name__ == '__main__':
     unittest.main()
