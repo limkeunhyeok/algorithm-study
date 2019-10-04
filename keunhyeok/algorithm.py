@@ -1,28 +1,20 @@
-# 4번 문제
+# 6번 문제, 백준 11052문제
 n = 4
-arr = [1,3,7,13]
+arr = [1, 6, 7, 10]
 
-def solution(n, array):
-    array.sort()
-    sub_array = []
-    for i in range(n - 1):
-        sub_array.append(array[i + 1] - array[i])
-    point = arrEuclidean(sub_array)
-    return (array[n-1] - array[0]) / point + 1 - n 
+def solution(n, arr):
+    d = [0] * (n + 1) # n개를 구매했을 때 최대값을 저장하는 배열
+    a = [0] + arr # 사과의 가격을 담은 배열
+    d[1] = a[1]
+    for i in range(2, n + 1):
+        for j in range(1, i + 1):
+            if d[i] < d[i - j] + a[j]:
+                d[i] = d[i - j] + a[j]
+    return d[n]
 
-# 유클리드 호제법
-# a와 b의 최대공약수는 b와 a 를 b로 나눈 나머지와의 최대공약수와 같다
-def euclidean(a, b):
-    if a == None:
-        return b
-    elif a < b:
-        (a, b) = (b, a)
-    while b != 0:
-        (a, b) = (b, a % b)
-    return a
-
-def arrEuclidean(arr):
-    num = None
-    for i in arr:
-        num = euclidean(num, i)
-    return num
+"""
+d[2] = d[1] + p[1] or d[0] + p[2]
+d[3] = d[2] + p[1] or d[1] + p[2] or d[0] + p[3]
+d[4] = d[3] + p[1] or d[2] + p[2] or d[1] + p[3] or d[0] + p[4]
+...
+"""
