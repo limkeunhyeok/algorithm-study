@@ -46,6 +46,7 @@ def clockSync(clocks, turnOn, nthSwitch):
     return ret
 
 # 무한 루프 에러
+'''
 def clockSync2(clocks, turnOn):
     if clocks.count(12) == len(clocks):
         return 1
@@ -69,6 +70,7 @@ def clockSync2(clocks, turnOn):
             clocks[timer] = 12 if clocks[timer] == 0 else clocks[timer]
 
     return ret
+'''
 
 def conv(time):
     return 12 if time == 12 else time % 12

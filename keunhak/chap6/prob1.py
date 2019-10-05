@@ -35,4 +35,17 @@ def makeFriends2(friends, relations):
                 cnt += makeFriends(leftFriends, relations)
 
     return cnt
-    
+
+'''
+for T in range(int(input())):
+    n, m = map(int, input().split())
+    rels = list(map(int, input().split()))
+    relations = []
+    i = 0
+    while True:
+        if i == len(rels): break
+        relations.append((rels[i], rels[i+1]))
+        i += 2
+
+    print(solution(n, m, relations))
+'''

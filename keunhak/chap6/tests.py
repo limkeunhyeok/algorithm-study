@@ -59,6 +59,7 @@ class Chap6ProbTest(unittest.TestCase):
             ['#', '#', '.', '.', '.', '#', '#']
             ])
         self.assertEqual(result, 0)
+    
     def test_prob2_case_2(self):
         result = prob2.solution(3, 7, [
             ['#', '.', '.', '.', '.', '.', '#'],
@@ -66,14 +67,22 @@ class Chap6ProbTest(unittest.TestCase):
             ['#', '#', '.', '.', '#', '#', '#']
             ])
         self.assertEqual(result, 2)
+    
     def test_prob2_case_3(self):
         result = prob2.solution(2, 3, [
             ['#', '.', '#'],
             ['#', '.', '.']
             ])
         self.assertEqual(result, 1)
-    '''
+    
     def test_prob2_case_4(self):
+        result = prob2.solution(2, 3, [
+            ['.', '.', '.'],
+            ['.', '.', '.']
+            ])
+        self.assertEqual(result, 2)
+    
+    def test_prob2_case_5(self):
         result = prob2.solution(8, 10, [
             ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#'],
             ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
@@ -85,8 +94,7 @@ class Chap6ProbTest(unittest.TestCase):
             ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#']
             ])
         self.assertEqual(result, 1514)
-    '''
-
+    
     # Prob3 tests
     def test_prob3_case_1(self):
         result = prob3.solution([12, 6, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12])
@@ -94,6 +102,6 @@ class Chap6ProbTest(unittest.TestCase):
     def test_prob3_case_2(self):
         result = prob3.solution([12, 9, 3, 12, 6, 6, 9, 3, 12, 9, 12, 9, 12, 12, 6, 6])
         self.assertEqual(result, 9)
-
+    
 if __name__ == '__main__':
     unittest.main()
