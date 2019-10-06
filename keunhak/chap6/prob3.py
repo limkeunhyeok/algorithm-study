@@ -17,9 +17,11 @@
     
     참고:
     완전 탐색 외에 다른 방법 이용하기: https://algospot.com/forum/read/2956/
+    4) Inverted Index로 구성하여 누르는 횟수가 정해져 있는 스위치는 제거
 '''
+import copy
 
-switchs = [
+entireSwitches = [
     [0, 1, 2],
     [3, 7, 9, 11],
     [4, 10, 14, 15],
@@ -34,21 +36,54 @@ switchs = [
 INF = 1000000000
 
 def solution(clocks):
-    ret = clockSync(clocks, 0)
-    if ret == INF: return -1
-    return ret
+    reduced = reduceCalc(copy.deepcopy(clocks), copy.deepcopy(entireSwitches))
+    ret = clockSync(reduced['clocks'], reduced['switches'], 0)
+    if ret == INF: return - 1
+    return ret + reduced['cnt']
 
-def clockSync(clocks, nthSwitch):
-    if nthSwitch == 10:
-        if clocks.count(12) == 16:
+def reduceCalc(clocks, switches):
+    clockDict = makeInvertedIndex(switches)
+    cnt = 0
+    willRemoved = []
+
+    # key: clock, value: pushable switches
+    for key, value in clockDict.items():
+        if len(value) == 1:
+            pushNum = (12 - clocks[key]) / 3
+            cnt += pushNum
+            for T in range(int(pushNum)):
+                for clock in switches[value[0]]:
+                    clocks[clock] += 3
+                    if clocks[clock] == 15: clocks[clock] = 3
+            if value[0] not in willRemoved:
+                willRemoved.append(value[0])
+    willRemoved.sort(reverse=True)
+    for switch in willRemoved:
+        del switches[switch]
+
+    return { 'clocks': clocks, 'switches': switches, 'cnt': int(cnt) }
+
+def makeInvertedIndex(switches):
+    clockDict = {}
+    for i in range(len(switches)):
+        for clock in switches[i]:
+            if clock in clockDict:
+                clockDict[clock].append(i)
+            else:
+                clockDict[clock] = [i]
+    return clockDict
+
+def clockSync(clocks, switches, nthSwitch):
+    if nthSwitch == len(switches):
+        if clocks.count(12) == len(clocks):
             return 0
         else:
             return INF
 
     ret = INF
     for i in range(4):
-        ret = min(ret, i + clockSync(clocks, nthSwitch + 1))
-        for clockIndex in switchs[nthSwitch]:
+        ret = min(ret, i + clockSync(clocks, switches, nthSwitch + 1))
+        for clockIndex in switches[nthSwitch]:
             clocks[clockIndex] += 3
             if clocks[clockIndex] == 15: clocks[clockIndex] = 3
 
