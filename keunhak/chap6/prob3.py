@@ -14,6 +14,9 @@
     2) 시간이 너무 오래 걸려 계속 동일 알고리즘에서 명령어 배치 변경
     3) https://algospot.com/forum/read/3148/ 참고, pypy 로 해도 시간 초과함
     완전 탐색 알고리즘을 파이썬 알고리즘으로 구현했을 때 문제 해결이 불가능 할 수 있음
+    
+    참고:
+    완전 탐색 외에 다른 방법 이용하기: https://algospot.com/forum/read/2956/
 '''
 
 switchs = [
