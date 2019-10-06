@@ -1,3 +1,27 @@
+'''
+    문제: 검은 칸과 흰 칸으로 구성된 H x W 크기의 게임판을 세 칸짜리 L 자 블록으로 모두 덮으려 한다. 서로 겹치거나 게임판으로 나가지 말고 모든 게임판을 덮을 수 있는 방법의 수를 구하라
+
+    시간제한: 2초
+    메모리 제한: 64MB
+
+    예시입력: 
+        3 7
+        #.....#
+        #.....#
+        ##...##
+    예시출력: 0
+    예시입력: 
+        3 7
+        #.....#
+        #.....#
+        ##..###
+    예시출력: 2
+
+    히스토리:
+    1) 첫 풀이: 모든 케이스를 조사하지 않아 오답 처리됨
+    2) 모든 케이스를 빠짐없이 조사하도록 변경하여 답안 통과
+'''
+
 import copy
 
 shapes = [
@@ -29,7 +53,7 @@ def makeFullBoard(n, m, boardMap):
     
     num = 0
     for shape in shapes:
-        if canPlace(pos[0], pos[1], n, m, shape, boardMap):
+        if pos[1] < m - 1 and canPlace(pos[0], pos[1], n, m, shape, boardMap):
             boardMapCopy = copy.deepcopy(boardMap)
             boardMapCopy[pos[0]][pos[1]] = '#' if shape[0][0] == '#' else boardMapCopy[pos[0]][pos[1]]
             boardMapCopy[pos[0]][pos[1] + 1] = '#' if shape[0][1] == '#' else boardMapCopy[pos[0]][pos[1] + 1]
