@@ -47,8 +47,8 @@ class NHNProbTest(unittest.TestCase):
         result = prob3.solution(5, [10, 20, 30, 40, 50])
         self.assertEqual(result, 5)
     def test_prob3_case_5(self):
-        result = prob3.solution(30, [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40])
-        self.assertEqual(result, 6)
+        result = prob3.solution(100, [i + 1 for i in range(100)])
+        self.assertEqual(result, 20)
 
     # Prob4 tests
     def test_prob4_case_1(self):
