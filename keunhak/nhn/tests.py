@@ -85,9 +85,6 @@ class NHNProbTest(unittest.TestCase):
     def test_prob6_case_3(self):
         result = prob6.solution(4, [1, 1, 1, 1])
         self.assertEqual(result, 4)
-    def test_prob6_case_4(self):
-        result = prob6.solution(4, [1, 10, 7, 10])
-        self.assertEqual(result, 20)
 
 
 if __name__ == '__main__':

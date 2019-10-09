@@ -22,6 +22,8 @@ def getMinCnt(goodsList, cnt):
     # 꼬리 재귀 (입력 크기가 작아 최대 스택의 길이가 20 depth 라서 필요 없을 수 있음)
     return getMinCnt(listCopy, cnt + 1)
     
+# 최적 인덱스 선택
+# 항상 최대한 많이 담은 상자를 포함한다
 def getOptimalIndex(goodsList):
     max = -1
     ret = 0
