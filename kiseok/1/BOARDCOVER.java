@@ -32,7 +32,7 @@ public class BOARDCOVER {
             }
             result = 0;
             if (coverCount%3 == 0) {
-                getBoardCover(0, 0, coverCount);
+                result = getBoardCover(0, 0, coverCount);
             }
             System.out.println(result);
         }
@@ -40,6 +40,9 @@ public class BOARDCOVER {
     }
     
     private static int getBoardCover(int i, int j, int count) {
+        if (count == 0) {
+            return 1;
+        }
         if (i==H) {
             return 0;
         }
@@ -50,10 +53,6 @@ public class BOARDCOVER {
         
         if (gameBoardcover[i][j]) {
             return getBoardCover(i, j+1, count);
-        }
-
-        if (count == 0) {
-            return 1;
         }
         
         int result = 0;
