@@ -8,8 +8,8 @@ def solution(n, appleSetPrices):
     for i in range(len(appleSetPrices)):
         unitPrices.append(appleSetPrices[i]/(i+1))
 
-    print(unitPrices)
-    return getMaxPrice(appleSetPrices, unitPrices, n)
+    ret = getMaxPrice(appleSetPrices, unitPrices, n)
+    return ret
 
 def getMaxPrice(appleSetPrices, unitPrices, leftCnt):
     if leftCnt == 0: return 0
