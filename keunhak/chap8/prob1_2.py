@@ -1,25 +1,9 @@
 def solution(pattern, word):
     return wildcard2(pattern, word)
 
-# brutu-force
-def wildcard(pattern, word):
-    if len(word) == 0 and len(pattern) == 0: return True
-    elif len(pattern) == 1 and pattern[0] == '*': return True
-    elif len(word) == 0 or len(pattern) == 0: return False
-
-    isMatch = False
-    if pattern[0] == '*':
-        for i in range(len(word)):
-            isMatch = isMatch or wildcard(pattern[1:], word[i:])
-    elif pattern[0] == '?' or pattern[0] == word[0]:
-        isMatch = wildcard(pattern[1:], word[1:])
-
-    return isMatch
-
-# dp
 memoization = {}
 def wildcard2(pattern, word):
-    if pattern + "_" + word in memoization: return memoization[pattern + "_" + word] 
+    if pattern + "_" + word in memoization: return memoization[pattern + "_" + word]
     if len(word) == 0 and len(pattern) == 0: return True
     elif len(pattern) == 1 and pattern[0] == '*': return True
     elif len(word) == 0 or len(pattern) == 0: return False
@@ -30,11 +14,11 @@ def wildcard2(pattern, word):
             isMatch = isMatch or wildcard2(pattern[1:], word[i:])
     elif pattern[0] == '?' or pattern[0] == word[0]:
         isMatch = wildcard2(pattern[1:], word[1:])
-    
+
     memoization[pattern + "_" + word] = isMatch
     return isMatch
 
-'''
+
 for T in range(int(input())):
     pattern = input()
     tc = []
@@ -45,4 +29,3 @@ for T in range(int(input())):
     for t in tc:
         if solution(pattern, t):
             print(t)
-'''
