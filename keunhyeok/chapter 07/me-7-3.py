@@ -3,8 +3,6 @@ def solution(idols, fans):
     l2 = len(fans)
     a = int(idols, 2)
     b = int(fans, 2)
-    if a > b:
-        a, b = b, a
     cnt = 0
     for i in range(l2 - l1 + 1):
         if a & b == 0:
