@@ -1,3 +1,26 @@
+import re
+
+def solution(wildcard, files):
+    res = []
+    w = '^' + wildcard.replace("?", ".").replace("*", ".*") + '$'
+    for filename in files:
+        if re.search(w, filename):
+            res.append(filename)
+    res.sort()
+    return res
+
+for T in range(int(input())):
+    wildcard = input()
+    files = []
+    for n in range(int(input())):
+        filename = input()
+        files.append(filename)
+    res = solution(wildcard, files)
+    
+    for i in res:
+        print(i)
+        
+
 '''
 완전탐색, https://shoark7.github.io/programming/algorithm/Algospot-Wildcard-%EB%A7%A4%EC%B9%AD
 def wildcard_exhaustive(pattern, word):
@@ -57,25 +80,3 @@ def wildcard(pattern, word):
 
     return match(0, 0)
 '''
-
-import re
-
-def solution(wildcard, files):
-    res = []
-    w = '^' + wildcard.replace("?", ".").replace("*", ".*") + '$'
-    for filename in files:
-        if re.search(w, filename):
-            res.append(filename)
-    res.sort()
-    return res
-
-for T in range(int(input())):
-    wildcard = input()
-    files = []
-    for n in range(int(input())):
-        filename = input()
-        files.append(filename)
-    res = solution(wildcard, files)
-    
-    for i in res:
-        print(i)
